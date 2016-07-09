@@ -1,16 +1,25 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
+# Copyright 2015-2016 Christopher Strecker
 
 import os
 import sys
 import re
 import time
- 
-def test():
-	
+
+def rebooter():
+	#run hdhomerun_config discover
+
+	description = (
+	'Command line interface for rebooting SiliconDust '
+	'HDHomeRun Devices.\n'
+	'------------------------------------------------------------'
+	'--------------\n'
+	'https://github.com/StreckerCM/HDHR_Rebooter')
+
+
 	sys.stdout.write('\r\n')
 
-	#run hdhomerun_config discover
 	print "Finding HDHomeRun Devices"
 	sys.stdout.write('\r\n')
 	result = os.popen("/usr/bin/hdhomerun_config discover").read()
@@ -39,8 +48,16 @@ def test():
 
 	print os.popen("/usr/bin/hdhomerun_config discover").read()
 
+	print_('\nCompleted')
+
         return
-       
+
+def main():
+	try:
+		rebooter()
+	except KeyboardInterrupt:
+		print_('\nCancelling...')
+
 if __name__ == '__main__':
-        test()
-        print 'completed'
+        main()
+
